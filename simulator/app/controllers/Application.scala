@@ -10,8 +10,8 @@ object Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def test = Action {
-    val l = List(1,2,3)
+  def test(a: Int) = Action {
+    val l = List(a,2,3)
     Ok(l.toString())
   }
 

@@ -1,6 +1,7 @@
 package core
 
 import scala.util.Random
+import Math._
 
 class simulator {
   def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = ???
@@ -11,7 +12,10 @@ class simulator {
 }
 
 class utils {
-  def stdDev = ???
+  def stdDev(data: List[Double]) = {
+    val mean = data.sum / data.length
+    sqrt(data.map(x => pow((mean - x),2)).sum / data.length)
+  }
 
   def getHistoricalMarketData: List[HistoricalMarketReturn] = ???
 
