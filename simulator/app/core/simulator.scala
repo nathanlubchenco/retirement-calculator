@@ -1,30 +1,55 @@
 package core
 
 import scala.util.Random
+import scala.io.Source
+
 import Math._
 
+
 class simulator {
-  def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = ???
+  def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = {
+    val range = 1 to n
+
+    val earnings = data.map(_.earningsPerc)
+    val yields = data.map(_.yieldPerc)
+
+    val earningsStdDev = stdDev(earnings)
+    val yieldsStdDev = stdDev(yields)
+    val earningsMean = earnings.sum / earnings.size.toDouble
+    val yieldsMean = yields.sum / yields.size.toDouble
+
+    val rng = new Random
+
+    range.toList.map(x => SimulatedMarketReturn(genGaussian(earningsStdDev, earningsMean, rng)))
+  }
 
   def simulateInflation(n: Int, data: List[HistoricalInflation]): List[SimulatedInflation] = ???
 
   def simulateEarlyRetirement(params: RetirementParameters, market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation]): SimulatedRetirement = ???
-}
 
-class utils {
   def stdDev(data: List[Double]) = {
     val mean = data.sum / data.length
     sqrt(data.map(x => pow((mean - x),2)).sum / data.length)
   }
 
-  def getHistoricalMarketData: List[HistoricalMarketReturn] = ???
+  def genGaussian(stdDev: Double, mean: Double, rng: Random ): Double = {
+    val variance = sqrt(stdDev)
+    val range = 0 to variance.floor.toInt
+    range.toList.map(x => rng.nextGaussian()).sum + mean
+  }
 
-  def getHistoricalInflationData: List[HistoricalInflation] = ???
+  def getHistoricalMarketData: List[HistoricalMarketReturn] = {
+    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble ,y(2).toDouble))
+  }
+
+  def getHistoricalInflationData: List[HistoricalInflation] = {
+    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(14).toDouble))
+  }
 }
 
-case class HistoricalMarketReturn(d: Double) extends AnyVal
+case class HistoricalMarketReturn(earningsPerc: Double, yieldPerc: Double)
 case class SimulatedMarketReturn(d: Double) extends AnyVal
-case class HistoricalInflation(d: Double) extends AnyVal
+case class HistoricalInflation(inflation: Double) extends AnyVal
 case class SimulatedInflation(d: Double) extends AnyVal
 
 case class InitialCapital(d: Double) extends AnyVal
