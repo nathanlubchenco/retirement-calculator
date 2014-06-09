@@ -39,7 +39,37 @@ class simulator {
     }
   }
 
-  def simulateEarlyRetirement(params: RetirementParameters, market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation]): SimulatedRetirement = ???
+  def simulateYear(capital: Double, monthlyExpenses: Double, marketReturn: SimulatedMarketReturn, inflationRate: SimulatedInflation): Double = {
+    val earnings = capital * marketReturn.earningsPerc
+    val yielded = capital * marketReturn.yieldPerc
+    val newCapital = capital + earnings + yielded
+    // capital minus expenses then adjusted for inflation
+    (newCapital - monthlyExpenses * 12) / (1 - inflationRate.inflation)
+  }
+
+  def simulateEarlyRetirement(params: RetirementParameters): SimulatedRetirement = {
+    val yearsInEarlyRetirement = params.yearsUntilRetirementAge.i - params.yearsUntilEarlyRetirement.i
+
+    val market: List[SimulatedMarketReturn] = simulateMarketReturns(yearsInEarlyRetirement, getHistoricalMarketData)
+    val inflationUntilEarlyRetirement: List[SimulatedInflation] = simulateInflation(params.yearsUntilEarlyRetirement.i, getHistoricalInflationData)
+    val inflationDuringEarlyRetirement: List[SimulatedInflation] = simulateInflation(yearsInEarlyRetirement, getHistoricalInflationData)
+
+    val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))
+
+    val data = market zip inflationDuringEarlyRetirement zip List.fill(yearsInEarlyRetirement)((inflationAdjustedMonthlyExpenses, params.initialCapital))
+
+    def go(data: List[((SimulatedMarketReturn, SimulatedInflation), (EstimatedMonthlyExpenses, InitialCapital))]): List[InitialCapital] = {
+      if (data.isEmpty) Nil
+      else {
+      val year = simulateYear(data.head._2._2.d, data.head._2._1.d, data.head._1._1, data.head._1._2)
+
+      }
+      go(data.tail, acc :: year)
+
+    }
+
+
+  }
 
   def aggregatedSimulatedRetirements(sims: List[SimulatedRetirement], runs: Int): AggregatedSimulatedRetirements = ???
 
