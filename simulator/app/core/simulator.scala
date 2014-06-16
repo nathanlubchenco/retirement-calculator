@@ -5,6 +5,8 @@ import scala.io.Source
 
 import Math._
 
+import scalaz._
+
 
 class simulator {
   def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = {
@@ -47,6 +49,7 @@ class simulator {
     (newCapital - monthlyExpenses * 12) / (1 - inflationRate.inflation)
   }
 
+
   def simulateEarlyRetirement(params: RetirementParameters): SimulatedRetirement = {
     val yearsInEarlyRetirement = params.yearsUntilRetirementAge.i - params.yearsUntilEarlyRetirement.i
 
@@ -56,20 +59,31 @@ class simulator {
 
     val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))
 
-    val data = market zip inflationDuringEarlyRetirement zip List.fill(yearsInEarlyRetirement)((inflationAdjustedMonthlyExpenses, params.initialCapital))
+    case class Data(market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation], capitalRemaining: Double, expenses: EstimatedMonthlyExpenses)
+    val data = Data(market, inflationDuringEarlyRetirement, params.initialCapital.d, inflationAdjustedMonthlyExpenses )
 
-    def go(data: List[((SimulatedMarketReturn, SimulatedInflation), (EstimatedMonthlyExpenses, InitialCapital))]): List[InitialCapital] = {
-      if (data.isEmpty) Nil
-      else {
-      val year = simulateYear(data.head._2._2.d, data.head._2._1.d, data.head._1._1, data.head._1._2)
-
-      }
-      go(data.tail, acc :: year)
-
+    val state = State { data: Data =>
+      ( Data(data.market.tail,
+        data.inflation.tail,
+        simulateYear(data.capitalRemaining, data.expenses.d, data.market.head, data.inflation.head), data.expenses ),
+        data.market.size)
     }
 
+    def runUntil(stateResult: Data): Data =  {
+      if( stateResult.market.size == 0) stateResult
+      else {
+        val nextResult = state.run(stateResult)
+        runUntil(nextResult._1)
+      }
+    }
+
+    val result = runUntil(data)
+    val failure = if(result.capitalRemaining < 0) true else false
+
+    SimulatedRetirement( SimulatedCapital(result.capitalRemaining), Failure(failure))
 
   }
+
 
   def aggregatedSimulatedRetirements(sims: List[SimulatedRetirement], runs: Int): AggregatedSimulatedRetirements = ???
 
@@ -111,5 +125,5 @@ case class RetirementParameters(initialCapital: InitialCapital,
 case class SimulatedCapital(d: Double) extends AnyVal
 case class Failure(b: Boolean) extends AnyVal
 
-case class SimulatedRetirement(simulatedCapital: List[SimulatedCapital], failure: Failure)
+case class SimulatedRetirement(simulatedRemainingCapital: SimulatedCapital, failure: Failure) // find a way to recover an entire list, but final value Ok for now
 case class AggregatedSimulatedRetirements(failurePerc: Double, averageRemainingCapital: Double, maxRemainingCapital: Double, minRemainingCapital: Double, rawData: List[SimulatedRetirement])

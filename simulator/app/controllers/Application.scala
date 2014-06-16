@@ -2,7 +2,10 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import core.simulator
+import core._
+import core.RetirementParameters
+import core.EstimatedMonthlyExpenses
+import core.InitialCapital
 
 object Application extends Controller {
 
@@ -15,14 +18,21 @@ object Application extends Controller {
     Ok(l.toString())
   }
 
-/*
-  def simRetirement = Action {
-    val simulator = new simulator
-    val market = simulator.simulateMarketReturns()
 
-    simulator.simulateEarlyRetirement()
+  def simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int) = Action {
+    val params = RetirementParameters(
+      InitialCapital(cap),
+      EstimatedMonthlyExpenses(exp),
+      YearsUntilEarlyRetirement(yearsToER),
+      YearsUntilRetirementAge(yearsToRA)
+    )
+
+    val simulator = new simulator
+    val result = simulator.simulateEarlyRetirement(params)
+    Ok(result.simulatedRemainingCapital.d.toString)
+
 
   }
-*/
+
 
 }
