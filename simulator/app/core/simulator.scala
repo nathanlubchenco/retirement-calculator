@@ -46,7 +46,8 @@ class simulator {
     val yielded = capital * marketReturn.yieldPerc
     val newCapital = capital + earnings + yielded
     // capital minus expenses then adjusted for inflation
-    (newCapital - monthlyExpenses * 12) / (1 - inflationRate.inflation)
+    // need to investigate inflation adjustment
+    (newCapital - monthlyExpenses * 12) / (1 + inflationRate.inflation)
   }
 
 
@@ -57,6 +58,7 @@ class simulator {
     val inflationUntilEarlyRetirement: List[SimulatedInflation] = simulateInflation(params.yearsUntilEarlyRetirement.i, getHistoricalInflationData)
     val inflationDuringEarlyRetirement: List[SimulatedInflation] = simulateInflation(yearsInEarlyRetirement, getHistoricalInflationData)
 
+    // should do a sanity check here to make sure these are reasonable and the calculation is correct
     val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))
 
     case class Data(market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation], capitalRemaining: Double, expenses: EstimatedMonthlyExpenses)
