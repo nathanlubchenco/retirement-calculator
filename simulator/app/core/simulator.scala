@@ -103,7 +103,7 @@ class simulator {
   }
 
   def getHistoricalInflationData: List[HistoricalInflation] = {
-    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(14).toDouble))
+    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(13).toDouble))
   }
 }
 
