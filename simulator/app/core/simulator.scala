@@ -99,7 +99,6 @@ class simulator {
     val variance = sqrt(stdDev)
     val range = 0 to variance.floor.toInt
     range.toList.map(x => rng.nextGaussian()).sum + mean
-
   }
 
   //convert data to percentage from double values in files
