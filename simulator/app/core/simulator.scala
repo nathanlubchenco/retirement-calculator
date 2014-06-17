@@ -59,6 +59,7 @@ class simulator {
     val inflationDuringEarlyRetirement: List[SimulatedInflation] = simulateInflation(yearsInEarlyRetirement, getHistoricalInflationData)
 
     // should do a sanity check here to make sure these are reasonable and the calculation is correct
+    // after correcting for percentages this appears correct
     val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))
 
     case class Data(market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation], capitalRemaining: Double, expenses: EstimatedMonthlyExpenses)
@@ -100,12 +101,14 @@ class simulator {
     range.toList.map(x => rng.nextGaussian()).sum + mean
   }
 
+  //convert data to percentage from double values in files
   def getHistoricalMarketData: List[HistoricalMarketReturn] = {
-    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble ,y(2).toDouble))
+    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble/100 ,y(2).toDouble/100))
   }
 
+  //convert data to percentage from double values stored in files
   def getHistoricalInflationData: List[HistoricalInflation] = {
-    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(13).toDouble))
+    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(13).toDouble/100))
   }
 }
 
