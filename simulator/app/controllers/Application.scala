@@ -27,7 +27,7 @@ object Application extends Controller {
       YearsUntilRetirementAge(yearsToRA)
     )
 
-    val simulator = new simulator
+    val simulator = new Simulator
     val result = simulator.simulateEarlyRetirement(params)
     Ok(result.simulatedRemainingCapital.d.toString)
 

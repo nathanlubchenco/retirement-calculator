@@ -8,7 +8,7 @@ import Math._
 import scalaz._
 
 
-class simulator {
+class Simulator {
   def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = {
     val range = 1 to n
 
@@ -101,11 +101,11 @@ class simulator {
   }
 
   def getHistoricalMarketData: List[HistoricalMarketReturn] = {
-    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble ,y(2).toDouble))
+    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble / 100d ,y(2).toDouble / 100d))
   }
 
   def getHistoricalInflationData: List[HistoricalInflation] = {
-    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(13).toDouble))
+    Source.fromFile("project/resources/inflation.tsv").getLines().drop(2).map(x => x.split("\t")).toList.map(y => HistoricalInflation(y(13).toDouble / 100d))
   }
 }
 
