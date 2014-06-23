@@ -36,6 +36,42 @@ class SimulationSpec extends Specification  {
     }
   }
 
+  "simulateYear" should {
+    "produce a remaining capital greater than initial capital when expenses are 0 AND market returns are greater than inflation" in {
+      // TODO refactor with scalacheck
+
+      val market = core.SimulatedMarketReturn(0.10, 0.05)
+      val inflation = core.SimulatedInflation(0.03)
+      val initialCapital = 100000d
+
+      val remainingCapital = simulator.simulateYear(initialCapital, 0, market, inflation)
+      println(remainingCapital)
+      remainingCapital must beGreaterThan(initialCapital)
+    }
+  }
+
+  "simulateEarlyRetirement" should {
+    "do something sensible" in {
+      // TODO refactor with scalacheck
+
+      val capital = core.InitialCapital(400000d)
+      val expenses = core.EstimatedMonthlyExpenses(4000d)
+      val untilEarRet = core.YearsUntilEarlyRetirement(10)
+      val untilRetAge = core.YearsUntilRetirementAge(20)
+
+      val params = core.RetirementParameters(capital, expenses, untilEarRet, untilRetAge)
+
+      val er = simulator.simulateEarlyRetirement(params)
+
+      println(er)
+
+      // this is just a filler test, mainly want to run to see printlns
+      // replace with something better
+      er.simulatedRemainingCapital.d must beGreaterThan(-10000000d)
+
+    }
+  }
+
 
 
 }

@@ -61,8 +61,10 @@ class Simulator {
     // should do a sanity check here to make sure these are reasonable and the calculation is correct
     val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))
 
+
     case class Data(market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation], capitalRemaining: Double, expenses: EstimatedMonthlyExpenses)
     val data = Data(market, inflationDuringEarlyRetirement, params.initialCapital.d, inflationAdjustedMonthlyExpenses )
+    println(data)
 
     val state = State { data: Data =>
       ( Data(data.market.tail,
@@ -72,14 +74,19 @@ class Simulator {
     }
 
     def runUntil(stateResult: Data): Data =  {
-      if( stateResult.market.size == 0) stateResult
+      if( stateResult.market.size == 0) {
+        println(stateResult)
+        stateResult
+      }
       else {
         val nextResult = state.run(stateResult)
+        println(nextResult)
         runUntil(nextResult._1)
       }
     }
 
     val result = runUntil(data)
+
     val failure = if(result.capitalRemaining < 0) true else false
 
     SimulatedRetirement( SimulatedCapital(result.capitalRemaining), Failure(failure))
