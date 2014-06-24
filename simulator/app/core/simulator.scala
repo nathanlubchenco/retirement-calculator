@@ -98,11 +98,11 @@ class Simulator {
 
   def stdDev(data: List[Double]) = {
     val mean = data.sum / data.length
-    sqrt(data.map(x => pow((mean - x),2)).sum / data.length)
+    sqrt(data.map(x => pow((x - mean),2)).sum / data.length)
   }
 
   def genGaussian(stdDev: Double, mean: Double, rng: Random ): Double = {
-    val variance = sqrt(stdDev)
+    val variance = pow(stdDev,2)
     val range = 0 to variance.floor.toInt
     range.toList.map(x => rng.nextGaussian()).sum + mean
   }

@@ -1,6 +1,9 @@
 
 
 import org.specs2.mutable.Specification
+
+import scala.util.Random
+
 //import org.specs2.ScalaCheck
 //import org.scalacheck.{Gen, Arbitrary}
 
@@ -69,6 +72,43 @@ class SimulationSpec extends Specification  {
       // replace with something better
       er.simulatedRemainingCapital.d must beGreaterThan(-10000000d)
 
+    }
+  }
+
+  "genGaussian" should {
+    "produce a list with a mean near the mean given for a large enough list" in {
+      val range = 1 to 10000
+      val stdDev = 10
+      val mean = 100
+      val rng = new Random
+
+      val generated = range.toList.map(x => simulator.genGaussian(stdDev, mean, rng))
+
+      val genMean = generated.sum / generated.size
+
+      genMean must beCloseTo(mean, 3d)
+    }
+    "produce a list with a standard deviation near the std dev given for a large enough list" in {
+      val range = 1 to 10000
+      val stdDev = 10
+      val mean = 100
+      val rng = new Random
+
+      val generated = range.toList.map(x => simulator.genGaussian(stdDev, mean, rng))
+
+      val genStdDev = simulator.stdDev(generated)
+
+      genStdDev must beCloseTo(stdDev, 1d)
+    }
+  }
+
+  "standardDeviation" should {
+    "return the correct std dev for  specific lists" in {
+      val stdDev1 = simulator.stdDev(List(1,2,3,4,5,6))
+      val stdDev2 = simulator.stdDev(List(10,70, 300))
+
+      stdDev1 must beCloseTo(1.87, 0.01)
+      stdDev2 must beCloseTo(157.07, 0.01)
     }
   }
 
