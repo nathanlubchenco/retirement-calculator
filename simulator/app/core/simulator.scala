@@ -20,6 +20,10 @@ class Simulator {
     val earningsMean = earnings.sum / earnings.size.toDouble
     val yieldsMean = yields.sum / yields.size.toDouble
 
+    println("market \n")
+    println(earningsStdDev)
+    println(earningsMean)
+
     val rng = new Random
 
     range.toList map { x =>
@@ -33,6 +37,10 @@ class Simulator {
     val inflation = data.map(_.inflation)
     val inflationStdDev = stdDev(inflation)
     val inflationMean = inflation.sum / inflation.size.toDouble
+
+    println("inflation \n")
+    println(inflationStdDev)
+    println(inflationMean)
 
     val rng = new Random
 
@@ -98,13 +106,25 @@ class Simulator {
 
   def stdDev(data: List[Double]) = {
     val mean = data.sum / data.length
-    sqrt(data.map(x => pow((x - mean),2)).sum / data.length)
+    sqrt(data.map(x => pow((x - mean),2)).sum / ( data.length -1 ))
   }
 
   def genGaussian(stdDev: Double, mean: Double, rng: Random ): Double = {
-    val variance = pow(stdDev,2)
-    val range = 0 to variance.floor.toInt
-    range.toList.map(x => rng.nextGaussian()).sum + mean
+    if(stdDev < 1 | mean < 1) {
+
+      val variance = pow(stdDev * 100,2)
+      val range = 0 to variance.floor.toInt
+      val scaledResult = range.toList.map(x => rng.nextGaussian()).sum + (mean * 100)
+      scaledResult / 100
+
+    } else {
+      val variance = pow(stdDev, 2)
+      val range = 0 to variance.floor.toInt
+      range.toList.map(x => rng.nextGaussian()).sum + mean
+      //println(stdDev)
+      //println(mean)
+      //println(result)
+    }
   }
 
   def getHistoricalMarketData: List[HistoricalMarketReturn] = {

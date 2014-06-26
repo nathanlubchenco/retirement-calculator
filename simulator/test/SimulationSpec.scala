@@ -14,6 +14,19 @@ class SimulationSpec extends Specification  {
   "getHistoricalMarketData" should {
     "return expected results for the first and last entry" in {
       val data = simulator.getHistoricalMarketData
+
+      val earnings = data.map(_.earningsPerc)
+      val yld = data.map(_.yieldPerc)
+
+      println(earnings.max)
+      println(earnings.min)
+      println(earnings.sum / earnings.length)
+
+
+      println(yld.max)
+      println(yld.min)
+      println(yld.sum / yld.length)
+
       data.head.earningsPerc must beCloseTo(0.0534, 0.0001)
       data.reverse.head.yieldPerc must beCloseTo(0.0196, 0.0001)
     }
@@ -23,7 +36,15 @@ class SimulationSpec extends Specification  {
     "return expected results for the first and last entry" in {
       val data = simulator.getHistoricalInflationData
       data.head.inflation must beCloseTo(0.0147, 0.0001)
+
+      val infl = data.map(_.inflation)
+
+      println(infl.max)
+      println(infl.min)
+      println(infl.sum / infl.length)
+
       data.reverse.head.inflation must beCloseTo(0.0135, 0.0001)
+
     }
   }
 
@@ -108,7 +129,7 @@ class SimulationSpec extends Specification  {
       val stdDev2 = simulator.stdDev(List(10,70, 300))
 
       stdDev1 must beCloseTo(1.87, 0.01)
-      stdDev2 must beCloseTo(157.07, 0.01)
+      stdDev2 must beCloseTo(153.07, 0.01)
     }
   }
 
