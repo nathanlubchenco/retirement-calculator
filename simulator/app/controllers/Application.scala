@@ -19,7 +19,7 @@ object Application extends Controller {
   }
 
 
-  def simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int) = Action {
+  def simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int, runs: Int) = Action {
     val params = RetirementParameters(
       InitialCapital(cap),
       EstimatedMonthlyExpenses(exp),
@@ -28,8 +28,8 @@ object Application extends Controller {
     )
 
     val simulator = new Simulator
-    val result = simulator.simulateEarlyRetirement(params)
-    Ok(result.simulatedRemainingCapital.d.toString)
+    val result = simulator.aggregatedSimulatedRetirements(params, runs)
+    Ok(result.toString)
 
 
   }

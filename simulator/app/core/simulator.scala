@@ -102,7 +102,18 @@ class Simulator {
   }
 
 
-  def aggregatedSimulatedRetirements(sims: List[SimulatedRetirement], runs: Int): AggregatedSimulatedRetirements = ???
+  def aggregatedSimulatedRetirements(params: RetirementParameters, runs: Int): AggregatedSimulatedRetirements = {
+    val range = 1 until runs
+    val data = range.toList.map(x => simulateEarlyRetirement(params))
+
+    val failurePerc = data.map(_.failure.b).foldLeft(0.0)((a,b) => if(b) 1 + a else a) / runs
+    val avgRemainingCaptial = data.map(_.simulatedRemainingCapital.d).sum / data.size
+    val maxRemainingCapital = data.map(_.simulatedRemainingCapital.d).max
+    val minRemainingCapital = data.map(_.simulatedRemainingCapital.d).min
+
+    AggregatedSimulatedRetirements(failurePerc, avgRemainingCaptial, maxRemainingCapital, minRemainingCapital, data)
+
+  }
 
   def stdDev(data: List[Double]) = {
     val mean = data.sum / data.length

@@ -10,4 +10,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /test/:a                       controllers.Application.test(a: Int)
 
-GET     /v1/simulateRetirement/initialCapital/:cap/monthlyExpenses/:exp/yearsToEarlyRetirement/:yearsToER/yearsToRetirementAge/:yearsToRA   controllers.Application.simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int)
+GET     /v1/simulateRetirement/initialCapital/:cap/monthlyExpenses/:exp/yearsToEarlyRetirement/:yearsToER/yearsToRetirementAge/:yearsToRA/runs/:runs   controllers.Application.simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int, runs: Int)
