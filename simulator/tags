@@ -1,0 +1,154 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AggregatedSimulatedRetirements	app/core/simulator.scala	/^case class AggregatedSimulatedRetirements(failurePerc: Double, averageRemainingCapital: Double, maxRemainingCapital: Double, minRemainingCapital: Double, rawData: List[SimulatedRetirement])/;"	c
+Application	app/controllers/Application.scala	/^object Application extends Controller {$/;"	o
+ApplicationSpec	test/ApplicationSpec.scala	/^class ApplicationSpec extends Specification {$/;"	c
+Data	app/core/simulator.scala	/^    case class Data(market: List[SimulatedMarketReturn], inflation: List[SimulatedInflation], capitalRemaining: Double, expenses: EstimatedMonthlyExpenses)$/;"	c
+EstimatedMonthlyExpenses	app/core/simulator.scala	/^case class EstimatedMonthlyExpenses(d: Double) extends AnyVal$/;"	c
+Failure	app/core/simulator.scala	/^case class Failure(b: Boolean) extends AnyVal$/;"	c
+HistoricalInflation	app/core/simulator.scala	/^case class HistoricalInflation(inflation: Double) extends AnyVal$/;"	c
+HistoricalMarketReturn	app/core/simulator.scala	/^case class HistoricalMarketReturn(earningsPerc: Double, yieldPerc: Double)$/;"	c
+InitialCapital	app/core/simulator.scala	/^case class InitialCapital(d: Double) extends AnyVal$/;"	c
+IntegrationSpec	test/IntegrationSpec.scala	/^class IntegrationSpec extends Specification {$/;"	c
+RetirementParameters	app/core/simulator.scala	/^case class RetirementParameters(initialCapital: InitialCapital,$/;"	c
+ReverseApplication	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^class ReverseApplication {$/;"	c
+ReverseAssets	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^class ReverseAssets {$/;"	c
+Routes	target/scala-2.10/src_managed/main/routes_routing.scala	/^object Routes extends Router.Routes {$/;"	o
+SimulatedCapital	app/core/simulator.scala	/^case class SimulatedCapital(d: Double) extends AnyVal$/;"	c
+SimulatedInflation	app/core/simulator.scala	/^case class SimulatedInflation(inflation: Double) extends AnyVal$/;"	c
+SimulatedMarketReturn	app/core/simulator.scala	/^case class SimulatedMarketReturn(earningsPerc: Double, yieldPerc: Double)$/;"	c
+SimulatedRetirement	app/core/simulator.scala	/^case class SimulatedRetirement(simulatedRemainingCapital: SimulatedCapital, failure: Failure) \/\/ find a way to recover an entire list, but final value Ok for now$/;"	c
+SimulationSpec	test/SimulationSpec.scala	/^class SimulationSpec extends Specification  {$/;"	c
+Simulator	app/core/simulator.scala	/^class Simulator {$/;"	c
+YearsUntilEarlyRetirement	app/core/simulator.scala	/^case class YearsUntilEarlyRetirement(i: Int) extends AnyVal$/;"	c
+YearsUntilRetirementAge	app/core/simulator.scala	/^case class YearsUntilRetirementAge(i: Int) extends AnyVal$/;"	c
+_prefix	target/scala-2.10/src_managed/main/routes_routing.scala	/^private var _prefix = "\/"$/;"	l
+aggregatedSimulatedRetirements	app/core/simulator.scala	/^  def aggregatedSimulatedRetirements(params: RetirementParameters, runs: Int): AggregatedSimulatedRetirements = {$/;"	m
+apply	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^    def apply():play.api.templates.HtmlFormat.Appendable = {$/;"	m
+apply	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^    def apply\/*1.2*\/(message: String):play.api.templates.HtmlFormat.Appendable = {$/;"	m
+apply	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^    def apply\/*1.2*\/(title: String)(content: Html):play.api.templates.HtmlFormat.Appendable = {$/;"	m
+at	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def at : JavascriptReverseRoute = JavascriptReverseRoute($/;"	m
+at	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def at(file:String): Call = {$/;"	m
+at	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef($/;"	m
+avgEarning	test/SimulationSpec.scala	/^      val avgEarning = data.map(_.earningsPerc).sum \/ 10$/;"	C
+avgRemainingCaptial	app/core/simulator.scala	/^    val avgRemainingCaptial = data.map(_.simulatedRemainingCapital.d).sum \/ data.size$/;"	C
+avgYield	test/SimulationSpec.scala	/^      val avgYield = data.map(_.yieldPerc).sum \/ 10$/;"	C
+bootstrap_theme	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^object bootstrap_theme extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template0[play.api.templates.HtmlFormat.Appendable] {$/;"	o
+capital	test/SimulationSpec.scala	/^      val capital = core.InitialCapital(400000d)$/;"	C
+controllers	app/controllers/Application.scala	/^package controllers$/;"	p
+controllers	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^package controllers {$/;"	p
+controllers.javascript	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^package controllers.javascript {$/;"	p
+controllers.ref	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^package controllers.ref {$/;"	p
+controllers_Application_index0	target/scala-2.10/src_managed/main/routes_routing.scala	/^private[this] lazy val controllers_Application_index0 = Route("GET", PathPattern(List(StaticPart(Routes.prefix))))$/;"	C
+controllers_Application_simRetirement3	target/scala-2.10/src_managed/main/routes_routing.scala	/^private[this] lazy val controllers_Application_simRetirement3 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("v1\/simulateRetirement\/initialCapital\/"),DynamicPart("cap", """[^\/]+""",true),StaticPart("\/monthlyExpenses\/"),DynamicPart("exp", """[^\/]+""",true),StaticPart("\/yearsToEarlyRetirement\/"),DynamicPart("yearsToER", """[^\/]+""",true),StaticPart("\/yearsToRetirementAge\/"),DynamicPart("yearsToRA", """[^\/]+""",true),StaticPart("\/runs\/"),DynamicPart("runs", """[^\/]+""",true))))$/;"	C
+controllers_Application_test2	target/scala-2.10/src_managed/main/routes_routing.scala	/^private[this] lazy val controllers_Application_test2 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("test\/"),DynamicPart("a", """[^\/]+""",true))))$/;"	C
+controllers_Assets_at1	target/scala-2.10/src_managed/main/routes_routing.scala	/^private[this] lazy val controllers_Assets_at1 = Route("GET", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("assets\/"),DynamicPart("file", """.+""",false))))$/;"	C
+core	app/core/simulator.scala	/^package core$/;"	p
+data	app/core/simulator.scala	/^    val data = Data(market, inflationDuringEarlyRetirement, params.initialCapital.d, inflationAdjustedMonthlyExpenses )$/;"	C
+data	app/core/simulator.scala	/^    val data = range.toList.map(x => simulateEarlyRetirement(params))$/;"	C
+data	test/SimulationSpec.scala	/^      val data = simulator.getHistoricalInflationData$/;"	C
+data	test/SimulationSpec.scala	/^      val data = simulator.getHistoricalMarketData$/;"	C
+data	test/SimulationSpec.scala	/^      val data = simulator.simulateMarketReturns(10, simulator.getHistoricalMarketData)$/;"	C
+defaultPrefix	target/scala-2.10/src_managed/main/routes_routing.scala	/^lazy val defaultPrefix = { if(Routes.prefix.endsWith("\/")) "" else "\/" }$/;"	C
+documentation	target/scala-2.10/src_managed/main/routes_routing.scala	/^def documentation = List(("""GET""", prefix,"""controllers.Application.index"""),("""GET""", prefix + (if(prefix.endsWith("\/")) "" else "\/") + """assets\/$file<.+>""","""controllers.Assets.at(path:String = "\/public", file:String)"""),("""GET""", prefix + (if(prefix.endsWith("\/")) "" else "\/") + """test\/$a<[^\/]+>""","""controllers.Application.test(a:Int)"""),("""GET""", prefix + (if(prefix.endsWith("\/")) "" else "\/") + """v1\/simulateRetirement\/initialCapital\/$cap<[^\/]+>\/monthlyExpenses\/$exp<[^\/]+>\/yearsToEarlyRetirement\/$yearsToER<[^\/]+>\/yearsToRetirementAge\/$yearsToRA<[^\/]+>\/runs\/$runs<[^\/]+>""","""controllers.Application.simRetirement(cap:Double, exp:Double, yearsToER:Int, yearsToRA:Int, runs:Int)""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {$/;"	m
+earnings	app/core/simulator.scala	/^    val earnings = capital * marketReturn.earningsPerc$/;"	C
+earnings	app/core/simulator.scala	/^    val earnings = data.map(_.earningsPerc)$/;"	C
+earnings	test/SimulationSpec.scala	/^      val earnings = data.map(_.earningsPerc)$/;"	C
+earningsMean	app/core/simulator.scala	/^    val earningsMean = earnings.sum \/ earnings.size.toDouble$/;"	C
+earningsStdDev	app/core/simulator.scala	/^    val earningsStdDev = stdDev(earnings)$/;"	C
+er	test/SimulationSpec.scala	/^      val er = simulator.simulateEarlyRetirement(params)$/;"	C
+expenses	test/SimulationSpec.scala	/^      val expenses = core.EstimatedMonthlyExpenses(4000d)$/;"	C
+f	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^    def f:(() => play.api.templates.HtmlFormat.Appendable) = () => apply()$/;"	m
+f	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^    def f:((String) => play.api.templates.HtmlFormat.Appendable) = (message) => apply(message)$/;"	m
+f	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^    def f:((String) => (Html) => play.api.templates.HtmlFormat.Appendable) = (title) => (content) => apply(title)(content)$/;"	m
+failure	app/core/simulator.scala	/^    val failure = if(result.capitalRemaining < 0) true else false$/;"	C
+failurePerc	app/core/simulator.scala	/^    val failurePerc = data.map(_.failure.b).foldLeft(0.0)((a,b) => if(b) 1 + a else a) \/ runs$/;"	C
+genGaussian	app/core/simulator.scala	/^  def genGaussian(stdDev: Double, mean: Double, rng: Random ): Double = {$/;"	m
+genMean	test/SimulationSpec.scala	/^      val genMean = generated.sum \/ generated.size$/;"	C
+genStdDev	test/SimulationSpec.scala	/^      val genStdDev = simulator.stdDev(generated)$/;"	C
+generated	test/SimulationSpec.scala	/^      val generated = range.toList.map(x => simulator.genGaussian(stdDev, mean, rng))$/;"	C
+getHistoricalInflationData	app/core/simulator.scala	/^  def getHistoricalInflationData: List[HistoricalInflation] = {$/;"	m
+getHistoricalMarketData	app/core/simulator.scala	/^  def getHistoricalMarketData: List[HistoricalMarketReturn] = {$/;"	m
+home	test/ApplicationSpec.scala	/^      val home = route(FakeRequest(GET, "\/")).get$/;"	C
+index	app/controllers/Application.scala	/^  def index = Action {$/;"	m
+index	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def index : JavascriptReverseRoute = JavascriptReverseRoute($/;"	m
+index	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def index(): Call = {$/;"	m
+index	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def index(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef($/;"	m
+index	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^object index extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template1[String,play.api.templates.HtmlFormat.Appendable] {$/;"	o
+infl	test/SimulationSpec.scala	/^      val infl = data.map(_.inflation)$/;"	C
+inflation	app/core/simulator.scala	/^    val inflation = data.map(_.inflation)$/;"	C
+inflation	test/SimulationSpec.scala	/^      val inflation = core.SimulatedInflation(0.03)$/;"	C
+inflationAdjustedMonthlyExpenses	app/core/simulator.scala	/^    val inflationAdjustedMonthlyExpenses = inflationUntilEarlyRetirement.foldLeft(params.estimatedMonthlyExpenses)((a,b) => EstimatedMonthlyExpenses(a.d * (1 + b.inflation)))$/;"	C
+inflationDuringEarlyRetirement	app/core/simulator.scala	/^    val inflationDuringEarlyRetirement: List[SimulatedInflation] = simulateInflation(yearsInEarlyRetirement, getHistoricalInflationData)$/;"	C
+inflationMean	app/core/simulator.scala	/^    val inflationMean = inflation.sum \/ inflation.size.toDouble$/;"	C
+inflationStdDev	app/core/simulator.scala	/^    val inflationStdDev = stdDev(inflation)$/;"	C
+inflationUntilEarlyRetirement	app/core/simulator.scala	/^    val inflationUntilEarlyRetirement: List[SimulatedInflation] = simulateInflation(params.yearsUntilEarlyRetirement.i, getHistoricalInflationData)$/;"	C
+initialCapital	test/SimulationSpec.scala	/^      val initialCapital = 100000d$/;"	C
+l	app/controllers/Application.scala	/^    val l = List(a,2,3)$/;"	C
+main	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^object main extends BaseScalaTemplate[play.api.templates.HtmlFormat.Appendable,Format[play.api.templates.HtmlFormat.Appendable]](play.api.templates.HtmlFormat) with play.api.templates.Template2[String,Html,play.api.templates.HtmlFormat.Appendable] {$/;"	o
+market	app/core/simulator.scala	/^    val market: List[SimulatedMarketReturn] = simulateMarketReturns(yearsInEarlyRetirement, getHistoricalMarketData)$/;"	C
+market	test/SimulationSpec.scala	/^      val market = core.SimulatedMarketReturn(0.10, 0.05)$/;"	C
+maxRemainingCapital	app/core/simulator.scala	/^    val maxRemainingCapital = data.map(_.simulatedRemainingCapital.d).max$/;"	C
+mean	app/core/simulator.scala	/^    val mean = data.sum \/ data.length$/;"	C
+mean	test/SimulationSpec.scala	/^      val mean = 100$/;"	C
+minRemainingCapital	app/core/simulator.scala	/^    val minRemainingCapital = data.map(_.simulatedRemainingCapital.d).min$/;"	C
+newCapital	app/core/simulator.scala	/^    val newCapital = capital + earnings + yielded$/;"	C
+nextResult	app/core/simulator.scala	/^        val nextResult = state.run(stateResult)$/;"	C
+params	app/controllers/Application.scala	/^    val params = RetirementParameters($/;"	C
+params	test/SimulationSpec.scala	/^      val params = core.RetirementParameters(capital, expenses, untilEarRet, untilRetAge)$/;"	C
+prefix	target/scala-2.10/src_managed/main/routes_routing.scala	/^def prefix = _prefix$/;"	m
+range	app/core/simulator.scala	/^      val range = 0 to variance.floor.toInt$/;"	C
+range	app/core/simulator.scala	/^    val range = 1 to n$/;"	C
+range	app/core/simulator.scala	/^    val range = 1 until runs$/;"	C
+range	test/SimulationSpec.scala	/^      val range = 1 to 10000$/;"	C
+ref	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^    def ref: this.type = this$/;"	m
+ref	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^    def ref: this.type = this$/;"	m
+ref	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^    def ref: this.type = this$/;"	m
+remainingCapital	test/SimulationSpec.scala	/^      val remainingCapital = simulator.simulateYear(initialCapital, 0, market, inflation)$/;"	C
+render	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^    def render(): play.api.templates.HtmlFormat.Appendable = apply()$/;"	m
+render	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^    def render(message:String): play.api.templates.HtmlFormat.Appendable = apply(message)$/;"	m
+render	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^    def render(title:String,content:Html): play.api.templates.HtmlFormat.Appendable = apply(title)(content)$/;"	m
+result	app/controllers/Application.scala	/^    val result = simulator.aggregatedSimulatedRetirements(params, runs)$/;"	C
+result	app/core/simulator.scala	/^    val result = runUntil(data)$/;"	C
+rng	app/core/simulator.scala	/^    val rng = new Random$/;"	C
+rng	test/SimulationSpec.scala	/^      val rng = new Random$/;"	C
+routes	target/scala-2.10/src_managed/main/routes_routing.scala	/^def routes:PartialFunction[RequestHeader,Handler] = {$/;"	m
+runUntil	app/core/simulator.scala	/^    def runUntil(stateResult: Data): Data =  {$/;"	m
+scaledResult	app/core/simulator.scala	/^      val scaledResult = range.toList.map(x => rng.nextGaussian()).sum + (mean * 100)$/;"	C
+setPrefix	target/scala-2.10/src_managed/main/routes_routing.scala	/^def setPrefix(prefix: String) {$/;"	m
+simRetirement	app/controllers/Application.scala	/^  def simRetirement(cap: Double, exp: Double, yearsToER: Int, yearsToRA: Int, runs: Int) = Action {$/;"	m
+simRetirement	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def simRetirement : JavascriptReverseRoute = JavascriptReverseRoute($/;"	m
+simRetirement	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def simRetirement(cap:Double, exp:Double, yearsToER:Int, yearsToRA:Int, runs:Int): Call = {$/;"	m
+simRetirement	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def simRetirement(cap:Double, exp:Double, yearsToER:Int, yearsToRA:Int, runs:Int): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef($/;"	m
+simulateEarlyRetirement	app/core/simulator.scala	/^  def simulateEarlyRetirement(params: RetirementParameters): SimulatedRetirement = {$/;"	m
+simulateInflation	app/core/simulator.scala	/^  def simulateInflation(n: Int, data: List[HistoricalInflation]): List[SimulatedInflation] = {$/;"	m
+simulateMarketReturns	app/core/simulator.scala	/^  def simulateMarketReturns(n: Int, data: List[HistoricalMarketReturn]): List[SimulatedMarketReturn] = {$/;"	m
+simulateYear	app/core/simulator.scala	/^  def simulateYear(capital: Double, monthlyExpenses: Double, marketReturn: SimulatedMarketReturn, inflationRate: SimulatedInflation): Double = {$/;"	m
+simulator	app/controllers/Application.scala	/^    val simulator = new Simulator$/;"	C
+simulator	test/SimulationSpec.scala	/^  val simulator = new core.Simulator$/;"	C
+state	app/core/simulator.scala	/^    val state = State { data: Data =>$/;"	C
+stdDev	app/core/simulator.scala	/^  def stdDev(data: List[Double]) = {$/;"	m
+stdDev	test/SimulationSpec.scala	/^      val stdDev = 10$/;"	C
+stdDev1	test/SimulationSpec.scala	/^      val stdDev1 = simulator.stdDev(List(1,2,3,4,5,6))$/;"	C
+stdDev2	test/SimulationSpec.scala	/^      val stdDev2 = simulator.stdDev(List(10,70, 300))$/;"	C
+test	app/controllers/Application.scala	/^  def test(a: Int) = Action {$/;"	m
+test	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def test : JavascriptReverseRoute = JavascriptReverseRoute($/;"	m
+test	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def test(a:Int): Call = {$/;"	m
+test	target/scala-2.10/src_managed/main/routes_reverseRouting.scala	/^def test(a:Int): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef($/;"	m
+untilEarRet	test/SimulationSpec.scala	/^      val untilEarRet = core.YearsUntilEarlyRetirement(10)$/;"	C
+untilRetAge	test/SimulationSpec.scala	/^      val untilRetAge = core.YearsUntilRetirementAge(20)$/;"	C
+variance	app/core/simulator.scala	/^      val variance = pow(stdDev * 100,2)$/;"	C
+variance	app/core/simulator.scala	/^      val variance = pow(stdDev, 2)$/;"	C
+views.html	target/scala-2.10/src_managed/main/views/html/bootstrap_theme.template.scala	/^package views.html$/;"	p
+views.html	target/scala-2.10/src_managed/main/views/html/index.template.scala	/^package views.html$/;"	p
+views.html	target/scala-2.10/src_managed/main/views/html/main.template.scala	/^package views.html$/;"	p
+yearsInEarlyRetirement	app/core/simulator.scala	/^    val yearsInEarlyRetirement = params.yearsUntilRetirementAge.i - params.yearsUntilEarlyRetirement.i$/;"	C
+yielded	app/core/simulator.scala	/^    val yielded = capital * marketReturn.yieldPerc$/;"	C
+yields	app/core/simulator.scala	/^    val yields = data.map(_.yieldPerc)$/;"	C
+yieldsMean	app/core/simulator.scala	/^    val yieldsMean = yields.sum \/ yields.size.toDouble$/;"	C
+yieldsStdDev	app/core/simulator.scala	/^    val yieldsStdDev = stdDev(yields)$/;"	C
+yld	test/SimulationSpec.scala	/^      val yld = data.map(_.yieldPerc)$/;"	C

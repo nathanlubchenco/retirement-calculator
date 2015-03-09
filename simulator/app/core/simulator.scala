@@ -139,7 +139,8 @@ class Simulator {
   }
 
   def getHistoricalMarketData: List[HistoricalMarketReturn] = {
-    Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble / 100d ,y(2).toDouble / 100d))
+  //  Source.fromFile("project/resources/market.tsv").getLines().drop(1).map(x => x.split("\t")).toList.map(y => HistoricalMarketReturn(y(1).toDouble / 100d ,y(2).toDouble / 100d))
+  val f: Frame[Int, String] = parseCsv("project/resources/market.tsv").toLabeledFrame
   }
 
   def getHistoricalInflationData: List[HistoricalInflation] = {
